@@ -18,7 +18,7 @@ app = FastAPI()
 
 model = load('lgbm_model.joblib')
 
-application = pd.read_pickle('sample.pkl')
+application = pd.read_pickle('sample_norm.pkl')
 
 
 list_columns = application.columns.to_list()
