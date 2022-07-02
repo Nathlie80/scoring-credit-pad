@@ -11,6 +11,7 @@ import pandas as pd
 from joblib import load
 import shap
 
+
 application = pd.read_pickle('sample.pkl')
 application = application.reset_index(drop=True)
 model = load('lgbm_model.joblib')
@@ -24,6 +25,7 @@ data = application[list_columns]
 # compute SHAP values
 explainer = shap.TreeExplainer(model)
 shap_values = explainer.shap_values(data)
+
 
 id_client = st.sidebar.selectbox(label='Client ID', options=application['SK_ID_CURR'])
 index_client = application[application['SK_ID_CURR']==id_client].index.tolist()
