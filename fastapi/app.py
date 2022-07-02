@@ -6,12 +6,12 @@ Created on Thu Jun 23 15:42:35 2022
 """
 
 # 1. Library imports
-import uvicorn
 from fastapi import FastAPI
 from joblib import load
 import numpy as np
 import pandas as pd
 from pydantic import BaseModel
+
 
 # 2. Create app and model objects
 app = FastAPI()
@@ -43,9 +43,3 @@ def pred_credit(client : Client):
         'prediction': prediction.tolist(),
         'probability': probability.tolist()
     }
-
-
-# 4. Run the API with uvicorn
-#    Will run on http://127.0.0.1:8000
-if __name__ == '__app__':
-    uvicorn.run(app, host='127.0.0.1', port=8000)
