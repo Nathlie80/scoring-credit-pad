@@ -1,32 +1,21 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jun 30 17:33:56 2022
-
-@author: nathl
-"""
-
-version: '1'
+version: "2.2"
 
 services:
-  fastapi:
-    build: fastapi/
-    restart: always
-    ports: 
+  frontend:
+    build: streamlit-frontend
+    ports:
+      - 8501:8501
+    networks:
+      - deploy_network
+    depends_on:
+      - backend
+
+  backend:
+    build: fastapi-backend
+    ports:
       - 8000:8000
     networks:
       - deploy_network
-    container_name: fastapi
-
-  streamlit:
-    build: streamlit/
-    restart: always
-    depends_on:
-      - fastapi
-    ports: 
-        - 8501:8501
-    networks:
-      - deploy_network
-    container_name: streamlit
 networks:
   deploy_network:
     driver: bridge
